@@ -22,6 +22,11 @@
                             required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            
+        </div>
+        <div class="block mt-4 text-center">
+            <p>OR</p>
+            <a href="{{ route('auth.google') }}" class="btn btn-primary text-white" style="color: blue; font-size: 1.rem;">Login with Google</a>
         </div>
 
         <!-- Remember Me -->
@@ -44,7 +49,7 @@
                     </a>
                 @endif
 
-                <x-primary-button>
+                <x-primary-button class="mr-6">
                     {{ __('Log in') }}
                 </x-primary-button>
             </div>

@@ -5,16 +5,23 @@
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 p-0 bg-white">
                 @include('layouts.sidebar')
+                
+                
             </div>
+            
 
             <!-- Main Content -->
             <div class="col-md-9 col-lg-10 p-4 main-content">
                 @include('layouts.navbar')
+                
+                
                 <div class="container mt-5 ">
                     <div class="d-flex justify-content-center align-items-center full-height">
-                        <div class="container text-center">
-                            <h1 class=" display-3 mb-4 font-weight-bold">Welcome to Minecraft Server Info</h1>
-
+                        
+                        <div class="container text-center">    
+                        <img src="{{ asset('image/image1.jpg') }}" class="img-fluid mb-3" alt="Minecraft">
+                            <h1 class=" display-5 mb-1 ">Your Favorite Sandbox Games</h1>
+                            <h1 class=" display-4 mb-1 font-weight-bold">Minecraft</h1>
                             <div class="card mb-4">
                                 <div class="card-header font-weight-bold">
                                     What is Minecraft?
@@ -41,6 +48,16 @@
                                 </div>
                                 <div class="card-body">
                                 <p>When you wanna play Minecraft with your non-existent friend, you need to run a server so you can play together. Are you having a hard time finding a good server for your needs? We are here to help! We provide the best server recommendations, so you don't need to worry about choosing a bad hosting service. Just look at our recommendations below and discuss them with your friends. It's so easy! If you have a server recommendation for us, you can <a href="{{ route('layouts.create')}}"style="color: blue;">add it here</a>.</p>
+                                </div>
+                            </div>
+
+                            <div class="card mb-4 ">
+                                <div class="card-header font-weight-bold">
+                                    How do i know which one is a good one?
+                                </div>
+                                <div class="card-body">
+                                    <img src="{{ asset('image/image2.jpg') }}" class="img-fluid mb-3" alt="server">
+                                    <p>A minecraft server has so many aspect you need to look at it, like cpu, ram, and etc. To make it simple, in this case im using Decision Support System to calculate it using Weight Product Method. The Weighted Product Model (WPM) is a technique for ranking and evaluating alternatives based on a variety of factors. It is an easy and obvious method that enables decision-makers to weigh the relative weight of many variables and make wise decisions. For short you, just need to look the result in table below which one is the best by the score. Highest the score is better.</p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +96,7 @@
                                 <td>{{ $data['storage'] }}</td>
                                 <td>{{ $data['ping'] }}</td>
                                 <td>{{ $data['backup'] }}</td>
-                                <td>{{ $data['nilai_wp'] }}</td>
+                                <<td>{{ round($data['hasil'], 4) }}</td>
                             </tr>
                         @endforeach
                     @endif

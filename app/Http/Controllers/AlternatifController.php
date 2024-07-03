@@ -26,24 +26,32 @@ class AlternatifController extends Controller
     private function calculateWP($alternatifs, $kriterias)
     {
         $hasil = [];
-        $totalBobot = $kriterias->sum('bobot');
-
+    
+        // Hitung total bobot absolut
+        $totalBobot = $kriterias->sum(function($kriteria) {
+            return abs($kriteria->bobot);
+        });
+    
+        // Normalisasi bobot
+        $normalized_weights = $kriterias->mapWithKeys(function($kriteria) use ($totalBobot) {
+            return [$kriteria->nama_kriteria => $kriteria->bobot / $totalBobot];
+        });
+    
         foreach ($alternatifs as $alternatif) {
             $nilai = 1;
-
-            foreach ($kriterias as $kriteria) {
-                $nilai_kriteria = $alternatif->{$kriteria->nama_kriteria};
-                $normalized_bobot = $kriteria->bobot / $totalBobot;
-
-                if (in_array($kriteria->nama_kriteria, ['harga', 'ping'])) {
-                    // If the criteria is 'harga' or 'ping', treat it as a cost
+    
+            foreach ($normalized_weights as $nama_kriteria => $normalized_bobot) {
+                $nilai_kriteria = $alternatif->{$nama_kriteria};
+    
+                if (in_array($nama_kriteria, ['harga', 'ping'])) {
+                    // Jika kriterianya adalah 'harga' atau 'ping', anggap sebagai biaya
                     $nilai *= pow($nilai_kriteria, -$normalized_bobot);
                 } else {
-                    // Otherwise, treat it as a benefit
+                    // Jika tidak, anggap sebagai keuntungan
                     $nilai *= pow($nilai_kriteria, $normalized_bobot);
                 }
             }
-
+    
             $hasil[] = [
                 'alternatif' => $alternatif->nama,
                 'harga' => $alternatif->harga,
@@ -52,18 +60,28 @@ class AlternatifController extends Controller
                 'storage' => $alternatif->storage,
                 'ping' => $alternatif->ping,
                 'backup' => $alternatif->backup,
-                'nilai_wp' => round($nilai, 4) // Round the result to 2 decimal places
+                'nilai_wp' => $nilai
             ];
         }
-
-        // Sort the results in descending order
-        usort($hasil, function ($a, $b) {
-            return $b['nilai_wp'] <=> $a['nilai_wp'];
+    
+        // Hitung total nilai WP
+        $total_nilai_wp = array_sum(array_column($hasil, 'nilai_wp'));
+    
+        // Hitung hasil akhir dengan membagi nilai WP dengan total nilai WP
+        $final_hasil = array_map(function($item) use ($total_nilai_wp) {
+            $item['hasil'] = round($item['nilai_wp'] / $total_nilai_wp, 4);
+            return $item;
+        }, $hasil);
+    
+        // Urutkan hasil dalam urutan menurun
+        usort($final_hasil, function ($a, $b) {
+            return $b['hasil'] <=> $a['hasil'];
         });
-
-        return $hasil;
+    
+        return $final_hasil;
     }
-
+    
+    
     public function create()
     {
         return view('layouts/add');
