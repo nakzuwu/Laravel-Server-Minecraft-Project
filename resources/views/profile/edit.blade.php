@@ -20,6 +20,15 @@
                             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                                 <div class="max-w-xl mx-auto">
                                     @include('profile.partials.update-profile-information-form')
+                                    
+                                        <div class="mt-4">
+                                            <form action="/email/verify">
+                                        
+                                                <x-primary-button>
+                                                    {{ __('Verify Email') }}
+                                                </x-primary-button>
+                                            </form>
+                                        </div>
                                 </div>
                             </div>
 
@@ -43,5 +52,5 @@
 </div>
 
 <footer class="mt-auto">
-        @include('layouts.footer')
+    @include('layouts.footer')
 </footer>
