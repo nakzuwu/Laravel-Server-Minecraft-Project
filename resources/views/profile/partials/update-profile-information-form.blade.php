@@ -49,6 +49,13 @@
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
+            
+            <!-- Button for verifying account -->
+            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+                <a href="{{ url('/email/verify') }}" class="btn btn-secondary">
+                    {{ __('Verify Account') }}
+                </a>
+            @endif
 
             @if (session('status') === 'profile-updated')
                 <p

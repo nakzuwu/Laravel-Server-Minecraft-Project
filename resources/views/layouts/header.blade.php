@@ -29,6 +29,10 @@
   <link rel="stylesheet" href="{{asset('AdminLTE-3.2.0')}}/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('AdminLTE-3.2.0')}}/plugins/summernote/summernote-bs4.min.css">
+  <!-- Tambahkan ini di dalam tag <head> -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
+
 <div class="wrapper">

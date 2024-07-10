@@ -49,5 +49,7 @@
 <!-- <script src="{{asset('AdminLTE-3.2.0')}}/dist/js/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('AdminLTE-3.2.0')}}/dist/js/pages/dashboard.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
