@@ -19,8 +19,8 @@
                             <p class="mt-3">
                                 <a href="#what-is-minecraft" class="text-primary">Minecraft</a> |
                                 <a href="#what-is-server" class="text-primary">Server</a> |
-                                <a href="#do-you-need-server" class="text-primary">Information</a> |
-                                <a href="#good-server" class="text-primary">Recommendation</a>
+                                <a href="#good-server" class="text-primary">Information</a> |
+                                <a href="#recomendation" class="text-primary">Recommendation</a>
                             </p>
                             <img src="{{ asset('image/image1.jpg') }}" class="img-fluid mb-3 mt-5" alt="Minecraft">
                         </div>                        
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="card container mt-5 text-center">
-                    <div class="card-header mb-4 font-weight-bold display-4 mb-1">
+                    <div class="card-header mb-4 font-weight-bold display-4 mb-1" id="recomendation">
                         Our Server Recommendation
                     </div>
                     <div class="card-body">
